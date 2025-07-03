@@ -44,7 +44,6 @@ def test_add_company_with_valid_input(web_driver):
 
     company_page.click_manage_button_for_company(company_data["company_name"])
 
-    # Step 11: Verifikasi detail data yang tampil sesuai input
     assert filled_data["company_name"] == company_data["company_name"]
     assert filled_data["email"]        == company_data["email"]
     assert filled_data["phone"]        == company_data["phone"]
@@ -54,34 +53,24 @@ def test_leave_all_fields_empty(web_driver):
     login_page = LoginPage(web_driver)
     company_page = CompanyPage(web_driver)
 
-    # Step 1: Login using helper
     login_page.do_login()
 
-    # Step 2: Go to "Companies" menu
     company_page.go_to_companies_menu()
 
-    # Step 3: Click "Add Company"
     company_page.click_add_company()
 
-    # Step 4: Do not fill any fields
-
-    # Step 5: Observe the "Next" button is disabled
     assert company_page.is_next_button_disabled(), "Next button should be disabled when all required fields are empty"
 
 def test_enter_invalid_email_format(web_driver):
     login_page = LoginPage(web_driver)
     company_page = CompanyPage(web_driver)
 
-    # Step 1: Login
     login_page.do_login()
 
-    # Step 2: Go to "Companies" menu
     company_page.go_to_companies_menu()
 
-    # Step 3: Click "Add Company"
     company_page.click_add_company()
 
-    # Step 4: Fill in all required fields, with invalid email
     company_page.fill_company_form({
         "company_name": "PT ABC",
         "email": "abc@xyz",
@@ -97,9 +86,7 @@ def test_enter_invalid_email_format(web_driver):
         "subdistrict": "BELIAN"
     })
 
-    # Step 5: Click "Next"
     company_page.click_next_button()
 
-    # Step 6: Assert email validation message is shown
     assert company_page.is_invalid_email_message_displayed(), "Expected error for invalid email format not displayed"
 

@@ -9,8 +9,8 @@ class MobileLoginPage:
         self.wait = WebDriverWait(driver, 20)
 
         self.company_id_field = (AppiumBy.ID, "id.edot.ework.debug:id/et_company_id")
-        self.username_field = (AppiumBy.ID, "id.edot.ework.debug:id/et_username")  # contoh
-        self.password_field = (AppiumBy.ID, "id.edot.ework.debug:id/et_password")  # contoh
+        self.username_field = (AppiumBy.ID, "id.edot.ework.debug:id/et_username")  
+        self.password_field = (AppiumBy.ID, "id.edot.ework.debug:id/et_password")
         self.login_button = (AppiumBy.ID, "id.edot.ework.debug:id/button_text")
 
     def login(self, company_id, username, password):
