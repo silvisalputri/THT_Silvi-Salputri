@@ -3,9 +3,9 @@ from pages.web.login_page import LoginPage
 from pages.web.company_page import CompanyPage
 import time
 
-def test_add_company_with_valid_input(web_driver):
-    login_page = LoginPage(web_driver)
-    company_page = CompanyPage(web_driver)
+def test_add_company_with_valid_input(driver):
+    login_page = LoginPage(driver)
+    company_page = CompanyPage(driver)
 
     login_page.do_login()
 
@@ -49,9 +49,9 @@ def test_add_company_with_valid_input(web_driver):
     assert filled_data["phone"]        == company_data["phone"]
     assert filled_data["address"]      == company_data["street_address"]
 
-def test_leave_all_fields_empty(web_driver):
-    login_page = LoginPage(web_driver)
-    company_page = CompanyPage(web_driver)
+def test_leave_all_fields_empty(driver):
+    login_page = LoginPage(driver)
+    company_page = CompanyPage(driver)
 
     login_page.do_login()
 
@@ -61,9 +61,9 @@ def test_leave_all_fields_empty(web_driver):
 
     assert company_page.is_next_button_disabled(), "Next button should be disabled when all required fields are empty"
 
-def test_enter_invalid_email_format(web_driver):
-    login_page = LoginPage(web_driver)
-    company_page = CompanyPage(web_driver)
+def test_enter_invalid_email_format(driver):
+    login_page = LoginPage(driver)
+    company_page = CompanyPage(driver)
 
     login_page.do_login()
 

@@ -5,21 +5,27 @@ from appium import webdriver as appium_webdriver
 from pages.web.login_page import LoginPage
 from pages.mobile.mobile_login_page import MobileLoginPage
 from config import VALID_USERNAME, VALID_PASSWORD, VALID_COMPANY_ID
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
 
 # === WEB FIXTURES ===
 @pytest.fixture(scope="function")
-def web_driver():
+def driver():
     driver_path = os.path.abspath("drivers/chromedriver.exe")
-    driver = webdriver.Chrome(executable_path=driver_path)
-    driver.maximize_window()
+    options = Options()
+    options.add_argument("--start-maximized")
+    service = Service(driver_path)
+    driver = webdriver.Chrome(service=service, options=options)
     yield driver
     driver.quit()
 
 @pytest.fixture(scope="function")
 def logged_in_web_driver():
     driver_path = os.path.abspath("drivers/chromedriver.exe")
-    driver = webdriver.Chrome(executable_path=driver_path)
-    driver.maximize_window()
+    options = Options()
+    options.add_argument("--start-maximized")
+    service = Service(driver_path)
+    driver = webdriver.Chrome(service=service, options=options)
 
     login_page = LoginPage(driver)
     login_page.open()
